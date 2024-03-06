@@ -1,34 +1,61 @@
+// A tuple is a collection of values of different types. 
+// Tuples are constructed using parentheses (), and each tuple itself is a value with type signature (T1, T2, ...)
+// , where T1, T2 are the types of its members. 
+// Functions can use tuples to return multiple values, as tuples can hold any number of values.
+
+// Tuples can be used as function arguments and as return values.
+fn reverse(pair: (i32, bool)) -> (bool, i32) {
+    // `let` can be used to bind the members of a tuple to variables.
+    let (int_param, bool_param) = pair;
+
+    (bool_param, int_param)
+}
+
+// The following struct is for the activity.
+#[derive(Debug)]
+struct Matrix(f32, f32, f32, f32);
+// So whenever we want to use Maxtrix, we have to create an instance of it and then use it.
+// It is like `Interface` from TypeScript.
+
 fn main() {
-    //variables can always be type annotated
-    let logical: bool = true; // true or false
+    // A tuple with a bunch of different types.
+    let long_tuple = (1u8, 2u16, 3u32, 4u64,
+                      -1i8, -2i16, -3i32, -4i64,
+                      0.1f32, 0.2f64,
+                      'a', true);
 
-    // floating point: f32, f64
-    let a_float: f64 = 1.0; // Regular annotation
-    let b_float = 1.0f32; // Suffix annotation
-    
-    // Signed integers: i8, i16, i32, i64, i128 and isize (pointer size)
-    let an_integer = 5i32; // Suffix annotation
-    let bn_integer: i32 = 5; // Regular annotation
-    
-    // There are also unsigned integers: u8, u16, u32m u64, u128 and usize (pointer size)
-    let a_unsigned = 5u16;
-    let b_unsigned: u128 = 5;
+    // Values can be extracted from the tuple using tuple indexing.
+    println!("Long tuple first value: {}", long_tuple.0);
+    println!("Long tuple second value: {}", long_tuple.1);
 
-    // default types are i32 and f64
-    let default_float = 3.0; // `f64`
-    let default_integer = 13; // `i32`
+    // Tuples can be tuple members.
+    let tuple_of_tuples = ((1u8, 2u16, 2u32), (4u64, -1i8), -2i16);
 
-    // by default variables are immutable
-    let mut _mutable = 12; // Mutable `i32`
-    _mutable = 21;
+    // Tuples are printable.
+    println!("tuple of tuples: {:?}", tuple_of_tuples);
 
-    // A type can also be inferred from context
-    let mut inferred_type = 5; // Type i64 is inferred from another line 
-    inferred_type = 4294967296i64;
+    // But long Tuples (more than 12 elements) cannot be printed.
+    //let too_long_tuple = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
+    //println!("Too long tuple: {:?}", too_long_tuple);
+    // TODO ^ Uncomment the above 2 lines to see the compiler error
 
-    // Error! The type of a variables can't be changed
-    mutable = true;
+    let pair = (1, true);
+    println!("Pair is {:?}", pair);
 
-    // variables can be overwritten with shadowing
-    let _mutable = true;
+    // called the reverse function
+    println!("The reversed pair is {:?}", reverse(pair));
+
+    // To create one element tuples, the comma is required to tell them apart
+    // from a literal surrounded by parentheses.
+    println!("One element tuple: {:?}", (5u32,));
+    println!("Just an integer: {:?}", (5u32));
+
+    // Tuples can be destructured to create bindings.
+    let tuple = (1, "hello", 4.5, true);
+
+    let (a, b, c, d) = tuple;
+    println!("{:?}, {:?}, {:?}, {:?}", a, b, c, d);
+
+    let matrix = Matrix(1.1, 1.2, 2.1, 2.2);
+    println!("{:?}", matrix);
 }
