@@ -1,34 +1,66 @@
+// An array is a collection of objects of the same type T, stored in contiguous memory. 
+// Arrays are created using brackets [], and their length, which is known at compile time, is part of their type signature [T; length].
+
+
+
+// Slices are similar to arrays, but their length is not known at compile time. 
+// Instead, a slice is a two-word object; the first word is a pointer to the data, the second word is the length of the slice. 
+// The word size is the same as usize, determined by the processor architecture, e.g. 64 bits on an x86-64. 
+// Slices can be used to borrow a section of an array and have the type signature &[T].
+
+
+
+
+use std::mem;
+
+fn analyze_slice(slice: &[i32]) {
+    println!("first element of the slice: {}", slice[0]);
+    println!("The lenght of the slice is {}", slice.len());
+}
+
 fn main() {
-    //variables can always be type annotated
-    let logical: bool = true; // true or false
+    // fixed-sized array
+    let xs: [i32; 5] = [1, 2, 3, 4, 5];
 
-    // floating point: f32, f64
-    let a_float: f64 = 1.0; // Regular annotation
-    let b_float = 1.0f32; // Suffix annotation
-    
-    // Signed integers: i8, i16, i32, i64, i128 and isize (pointer size)
-    let an_integer = 5i32; // Suffix annotation
-    let bn_integer: i32 = 5; // Regular annotation
-    
-    // There are also unsigned integers: u8, u16, u32m u64, u128 and usize (pointer size)
-    let a_unsigned = 5u16;
-    let b_unsigned: u128 = 5;
+    // all elements can be initialized to the same value
+    let ys: [i32; 300] = [0; 300];
 
-    // default types are i32 and f64
-    let default_float = 3.0; // `f64`
-    let default_integer = 13; // `i32`
+    println!("first element of the array: {}", xs[0]);
+    println!("second element of the second array: {}", ys[1]);
 
-    // by default variables are immutable
-    let mut _mutable = 12; // Mutable `i32`
-    _mutable = 21;
+    // `len` returns the size of the array
+    println!("array size: {}", xs.len());
+    println!("array size: {}", ys.len());
 
-    // A type can also be inferred from context
-    let mut inferred_type = 5; // Type i64 is inferred from another line 
-    inferred_type = 4294967296i64;
+    // arrays are stack allocated
+    println!("array occupies {} bytes", mem::size_of_val(&xs));
+    println!("array occupies {} bytes", mem::size_of_val(&ys));
 
-    // Error! The type of a variables can't be changed
-    mutable = true;
+    // arrays can be automatically borrowed as slices
+    println!("borrow the whole array as a slice");
+    analyze_slice(&xs);
 
-    // variables can be overwritten with shadowing
-    let _mutable = true;
+
+    // Slices can point to a section of an array.
+    // They are of the form [starting_index..ending_index].
+    // `starting_index` is the first position in the slice.
+    // `ending_index` is one more than the last position in the slice.
+    println!("Borrow a section of the array as a slice.");
+    analyze_slice(&ys[1 .. 4]);
+
+    // Arrays can be safely accessed using `.get`, which returns an
+    // `Option`. This can be matched as shown below, or used with
+    // `.expect()` if you would like the program to exit with a nice
+    // message instead of happily continue.
+    for i in 0..xs.len() + 1 { // Oops, one element too far!
+        match xs.get(i) {
+            Some(xval) => println!("{}: {}", i, xval),
+            None => println!("Slow down! {} is too far!", i),
+        }
+    }
+
+    // Out of bound indexing on array causes compile time error.
+    //println!("{}", xs[5]);
+    // Out of bound indexing on slice causes runtime error.
+    //println!("{}", xs[..][5]);
 }
