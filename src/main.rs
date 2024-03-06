@@ -1,34 +1,34 @@
 fn main() {
-    //variables can always be type annotated
-    let logical: bool = true; // true or false
+    // underscores can be used to improve readability
+    println!("1_000_000 is {}", 1_000_000u32);
 
-    // floating point: f32, f64
-    let a_float: f64 = 1.0; // Regular annotation
-    let b_float = 1.0f32; // Suffix annotation
-    
-    // Signed integers: i8, i16, i32, i64, i128 and isize (pointer size)
-    let an_integer = 5i32; // Suffix annotation
-    let bn_integer: i32 = 5; // Regular annotation
-    
-    // There are also unsigned integers: u8, u16, u32m u64, u128 and usize (pointer size)
-    let a_unsigned = 5u16;
-    let b_unsigned: u128 = 5;
+    // Integer addition
+    println!("1 + 2 = {}", 1u32 + 2);
 
-    // default types are i32 and f64
-    let default_float = 3.0; // `f64`
-    let default_integer = 13; // `i32`
+    // Integer subtraction
+    println!("1 - 2 = {}", 1i32 - 2);
 
-    // by default variables are immutable
-    let mut _mutable = 12; // Mutable `i32`
-    _mutable = 21;
+    // Integer multiplication
+    println!("9 * 6 = {}", 9i32 * 6);
 
-    // A type can also be inferred from context
-    let mut inferred_type = 5; // Type i64 is inferred from another line 
-    inferred_type = 4294967296i64;
+    // TODO ^ Try changing `1i32` to `1u32` to see why the type is important
 
-    // Error! The type of a variables can't be changed
-    mutable = true;
+    // Scientific notation
+    println!("1e4 is {}, -2.5e-3 is {}", 1e4, -2.5e-3);
 
-    // variables can be overwritten with shadowing
-    let _mutable = true;
+    // Short-circuiting boolean logic
+    println!("true AND false is {}", true && false);
+    println!("true OR false is {}", true || false);
+    println!("NOT true is {}", !true);
+
+    // Bitwise operations
+    println!("0011 AND 0101 is {:04b}", 0b0011u32 & 0b0101);
+    println!("0011 OR 0101 is {:04b}", 0b0011u32 | 0b0101);
+    println!("0011 XOR 0101 is {:04b}", 0b0011u32 ^ 0b0101);
+    println!("1 << 5 is {}", 1u32 << 5);
+    println!("0x80 >> 2 is 0x{:x}", 0x80u32 >> 2);
+    // I didn't understand any of the Bitwise operations above
+    // I just copied code from the book
+    // I will revisit this later
+    // I will have to read more about it
 }
