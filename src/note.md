@@ -19,3 +19,20 @@
 - Shadowing is different from marking a variable as `mut`.
 - Shadowing is useful when you want to change the type of a value but reuse the same name
 - Rustaceans say that the first variable is shadowed by the second, which means that the second variable is what the compiler will see when you use the name of the variable
+
+## Data Types
+- Rust is of a certain type, which tells Rust what kind of data is being specified so it knows how to work with that data
+- Rust is a ***statically typed*** language, which means that it must know the types of all variables at compile time 
+- Rust compiler can usually infer what type we want to use based on the value and how we use it 
+- In cases when many types are possible, we must add type annotation
+- Rust has two categories of data types:
+    - scalar types
+        A *scalar* type represents a single value
+            - integers
+            - floating-point numbers
+            - Booleans
+            - characters
+    - compound types
+        A *compound* type can group multiple values into one types
+            - tuples
+            - arrays
