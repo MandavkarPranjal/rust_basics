@@ -1,3 +1,4 @@
+## Variables and Mutability
 - by default, variables are immutable
 - when a variables is immutable, once a value is bound to a name, you can't change that value.
 - to make a variable mutable, use the `mut` keyword.
