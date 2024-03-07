@@ -1,38 +1,22 @@
-## Variables and Mutability
-- by default, variables are immutable
-- when a variables is immutable, once a value is bound to a name, you can't change that value.
-- to make a variable mutable, use the `mut` keyword.
-- `mut` is a short form of mutable.
+# Functions
+- Functions are prevalent in Rust code
+- most important function in Rust is `main`
+- `main` is the entry point of many programs
+- Rust code uses *snake case* as the conventional style fot Functions and variables, in which all letters are lowercase and underscores separate words. eg: `main.rs` file
+- `fn` keyword is used to decalre a function
 
-## Constants
-" Like immutable variables, constants are values that are bound to a name and are not allowed to change, but there are a few differences between constants and variables.
-- constants aren't allowed to use the `mut` keyword
-- constants aren't just immutable by default, they are always immutable
-- constants are declared using the `const` keyword and the type of the value must be annotated
-- constants can be declared in any scope, including the global scope, which make them useful for values that many parts of the program need to know about
-- last difference is that constants may be set only to a constant expression, not the result of a function call or any other value that could only be computed at runtime
+## Parameters
+- use just like every other programming language for Functions
 
-- constants are valid for the entire time a program runs, within the scope they were declared
+## Statements and Expressions
+Function bodies are made up of a series of Statements optionally ending in an expression
+- **Statements** are instruction that perform some action and do not return a value
+- **Expressions** evaluate to a resulting value
+- `let y = 6;` is a statement
+- `let x = (let y = 6);` is an error because `let y = 6`is a statement and does not return a value
+- `let x = { let y = 6; y + 1};` is an statement but, `y + 1` is a expression because returns a value of `7`
 
-## Shadowing
-- Shadowing is a feature that allows you to redeclare a variables
-- Shadowing is different from marking a variable as `mut`.
-- Shadowing is useful when you want to change the type of a value but reuse the same name
-- Rustaceans say that the first variable is shadowed by the second, which means that the second variable is what the compiler will see when you use the name of the variable
-
-## Data Types
-- Rust is of a certain type, which tells Rust what kind of data is being specified so it knows how to work with that data
-- Rust is a ***statically typed*** language, which means that it must know the types of all variables at compile time 
-- Rust compiler can usually infer what type we want to use based on the value and how we use it 
-- In cases when many types are possible, we must add type annotation
-- Rust has two categories of data types:
-    - scalar types
-        A *scalar* type represents a single value
-            - integers
-            - floating-point numbers
-            - Booleans
-            - characters
-    - compound types
-        A *compound* type can group multiple values into one types
-            - tuples
-            - arrays
+## Return Values
+- Rust don't use `return` keyword to return values from function but, declare the return type of the function using `->` followed by the type of the value the function will return 
+- In Rust, the return value of the function is synonymous with the value of the final expression in the block of the body of a function
+- ou can return early from a function by using the `return` keyword and specifying a value, but most functions return the last expression implicitly
